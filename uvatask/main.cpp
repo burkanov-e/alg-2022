@@ -9,11 +9,4 @@ int main()
 {
     iostream::sync_with_stdio(false);
 
-    int a;
-    cin >> a;
-
-    int b;
-    cin >> b;
-
-    cout << a + b << "\n";
 }
