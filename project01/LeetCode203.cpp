@@ -18,11 +18,13 @@ class Solution {
             head = head->next;
         }
 
-        while (head) {
-            if (head->next && head->val == val) {
-                head->next = head->next->next;
+        ListNode* temp = head;
+
+        while (temp) {
+            if (temp->next && temp->val == val) {
+                temp->next = temp->next->next;
             } else {
-                head = head->next;
+                temp = temp->next;
             }
         }
 
