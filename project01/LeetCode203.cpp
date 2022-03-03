@@ -21,7 +21,7 @@ class Solution {
         ListNode* temp = head;
 
         while (temp) {
-            if (temp->next && temp->val == val) {
+            if (temp->next && temp->next->val == val) {
                 temp->next = temp->next->next;
             } else {
                 temp = temp->next;
