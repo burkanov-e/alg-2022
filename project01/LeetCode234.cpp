@@ -23,6 +23,8 @@ class Solution {
         while (head != NULL) {
             int temp = v.back();
 
+            v.pop_back();
+
             if (head->val != temp) {
                 return false;
             }
