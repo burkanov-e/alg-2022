@@ -27,9 +27,11 @@ int main() {
             if (it == set.end()) {
                 result++;
             } else {
-                set.erase(inp);
+                set.erase(it);
             }
         }
+
+        result += set.size();
 
         cout << result << endl;
     }
