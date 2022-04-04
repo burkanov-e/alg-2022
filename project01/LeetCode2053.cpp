@@ -7,7 +7,7 @@ class Solution {
             map[it]++;
         }
         for (auto &it : arr) {
-            if (map[it] < 1) {
+            if (map[it] > 1) {
                 continue;
             }
             curr++;
