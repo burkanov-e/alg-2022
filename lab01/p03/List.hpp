@@ -249,11 +249,11 @@ class List {
         }
 
         const T &operator*() const {
-            return static_cast<Node *>(mPointerToElem)->mData;
+            return static_cast<const Node *>(mPointerToElem)->mData;
         }
 
         const T *operator->() const {
-            return &static_cast<Node *>(mPointerToElem)->mData;
+            return &static_cast<const Node *>(mPointerToElem)->mData;
         }
     };
 
@@ -265,6 +265,18 @@ class List {
 
     Iter end() {
         Iter r;
+        r.mPointerToElem = &mAnchor;
+        return r;
+    }
+
+    CIter begin() const {
+        CIter r;
+        r.mPointerToElem = mAnchor.mNext;
+        return r;
+    }
+
+    CIter end() const {
+        CIter r;
         r.mPointerToElem = &mAnchor;
         return r;
     }

@@ -1,10 +1,9 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "../../doctest/doctest.h"
-
-#include "List.hpp"
 #include <algorithm>
 #include <string>
 
+#include "../../doctest/doctest.h"
+#include "List.hpp"
 
 using namespace std;
 
@@ -37,78 +36,94 @@ TEST_CASE("List: pushBack") {
     REQUIRE(lst2.toStr() == "{Hello, Linked, List}");
 }
 
-// TEST_CASE("List: Iter") {
-//     SUBCASE("List: Iter default constructor") {
-//         List<int>::Iter it;
-//     }
+TEST_CASE("List: Iter") {
+    SUBCASE("List: Iter default constructor") {
+        List<int>::Iter it;
+    }
 
-//     SUBCASE("++") {
-//         List<int> lst;
-//         lst.pushBack(1);
-//         lst.pushBack(2);
-//         lst.pushBack(3);
-//         lst.pushBack(4);
-//         lst.pushBack(5);
+    SUBCASE("++") {
+        List<int> lst;
+        lst.pushBack(1);
+        lst.pushBack(2);
+        lst.pushBack(3);
+        lst.pushBack(4);
+        lst.pushBack(5);
 
-//         int value = 0;
+        int value = 0;
 
-//         for (auto it = lst.begin(); it != lst.end(); ++it) {
-//             ++value;
-//             REQUIRE(*it == value);
-//         }
+        for (auto it = lst.begin(); it != lst.end(); ++it) {
+            ++value;
+            REQUIRE(*it == value);
+        }
 
-//         auto it = lst.begin();
-//         REQUIRE(*(++it) == 2);
+        auto it = lst.begin();
+        REQUIRE(*(++it) == 2);
 
-//         REQUIRE(*(it++) == 2);
-//     }
+        REQUIRE(*(it++) == 2);
+    }
 
-//     SUBCASE("--") {
-//         List<int> lst;
-//         lst.pushBack(1);
-//         lst.pushBack(2);
-//         lst.pushBack(3);
-//         lst.pushBack(4);
-//         lst.pushBack(5);
+    SUBCASE("--") {
+        List<int> lst;
+        lst.pushBack(1);
+        lst.pushBack(2);
+        lst.pushBack(3);
+        lst.pushBack(4);
+        lst.pushBack(5);
 
-//         int value = 5;
+        int value = 5;
 
-//                 for (auto it = lst.end(); it != lst.begin();) {
-//             REQUIRE(*(--it) == value--);
-//         }
+        for (auto it = lst.end(); it != lst.begin();) {
+            REQUIRE(*(--it) == value--);
+        }
 
-//         auto it = lst.begin();
-//         ++it;
-//         ++it;
+        auto it = lst.begin();
+        ++it;
+        ++it;
 
-//         REQUIRE(*(--it) == 2);
+        REQUIRE(*(--it) == 2);
 
-//         REQUIRE(*(it--) == 2);
-//         REQUIRE(*it == 1);
-//     }
+        REQUIRE(*(it--) == 2);
+        REQUIRE(*it == 1);
+    }
 
-//     SUBCASE("std:reverse") {
-//         List<int> lst;
-//         lst.pushBack(1);
-//         lst.pushBack(2);
-//         lst.pushBack(3);
-//         lst.pushBack(4);
-//         lst.pushBack(5);
+    SUBCASE("std:reverse") {
+        List<int> lst;
+        lst.pushBack(1);
+        lst.pushBack(2);
+        lst.pushBack(3);
+        lst.pushBack(4);
+        lst.pushBack(5);
 
-//         reverse(lst.begin(), lst.end());
+        reverse(lst.begin(), lst.end());
 
-//         REQUIRE(lst.toStr() = "{5, 4, 3, 2, 1}");
-//     }
+        REQUIRE(lst.toStr() == "{5, 4, 3, 2, 1}");
+    }
 
-//     SUBCASE("->") {
-//         List<string> lst;
-//         lst.pushBack("Hello");
+    SUBCASE("->") {
+        List<string> lst;
+        lst.pushBack("Hello");
 
-//         auto it = lst.begin();
-//         REQUIRE((*it).size() == 5);
-//         REQUIRE(it->size() == 5);
-//     }
-// }
+        auto it = lst.begin();
+        REQUIRE((*it).size() == 5);
+        REQUIRE(it->size() == 5);
+    }
+
+    SUBCASE("end") {
+        List<int> lst;
+
+        lst.pushBack(1);
+        lst.pushBack(2);
+        lst.pushBack(3);
+
+        auto it = lst.end();
+        it--;
+        REQUIRE(*it == 3);
+        it--;
+        REQUIRE(*it == 2);
+        it++;
+        REQUIRE(*it == 3);
+    }
+}
 
 TEST_CASE("List: insert, pushBack, pushFront") {
     List<int> lst;
