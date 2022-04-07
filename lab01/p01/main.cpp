@@ -44,7 +44,7 @@ void pushBack(Node *&head, Node *&tail, int x) {
     }
 }
 
-void insertBefore(Node *&head, Node *curr, int x) {
+void insertBefore(Node *&head, Node *&curr, int x) {
     if (head == curr) {
         head->mPrev = new Node(x, nullptr, head);
         head = head->mPrev;
