@@ -23,6 +23,7 @@ int64_t fibIter(int n) {
 
     return a;
 }
+
 int main() {
     for (int n; cin >> n;) {
         cout << fibIter(n) << endl;
