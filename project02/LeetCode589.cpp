@@ -20,20 +20,21 @@ public:
 
 class Solution {
    public:
-    vector<int> preorder(Node* root) {
-        vector<int> res;
-        checkNull(root, res);
-        return res;
-    }
+    vector<int> res;
 
-    void checkNull(Node* root, vector<int> res) {
+    void checkNull(Node* root) {
         if (root == nullptr) {
             return;
         } else {
             for (auto& ch : root->children) {
                 res.push_back(root->val);
-                checkNull(root, res);
+                checkNull(ch);
             }
         }
+    }
+
+    vector<int> preorder(Node* root) {
+        checkNull(root);
+        return res;
     }
 };
