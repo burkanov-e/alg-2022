@@ -26,8 +26,8 @@ class Solution {
         if (root == nullptr) {
             return;
         } else {
+            res.push_back(root->val);
             for (auto& ch : root->children) {
-                res.push_back(root->val);
                 checkNull(ch);
             }
         }
