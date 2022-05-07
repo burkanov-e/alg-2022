@@ -1,5 +1,12 @@
 #pragma once
 
-#include <bits/stdc++.h>
+#include <cstdlib>
+#include <map>
+#include <utility>
+#include <vector>
 
 int binarySearch(const std::vector<int> &v, const int &x);
+
+std::string toStr(const std::vector<int> &v);
+
+void insertionSort(std::vector<int> &v);

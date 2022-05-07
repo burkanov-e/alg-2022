@@ -1,4 +1,5 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <vector>
 
 #include "../doctest/doctest.h"
 #include "sort.hpp"
@@ -17,4 +18,11 @@ TEST_CASE("Binary Search") {
 
     int res2 = binarySearch(v, 10);
     REQUIRE(res2 == 0);
+}
+
+TEST_CASE("Inseriton Sort") {
+    vector<int> v = {10, 30, 20, 50, 40, 45, 75, 60, 90};
+
+    insertionSort(v);
+    REQUIRE(toStr(v) == "{10, 20, 30, 40, 45, 50, 60, 75, 90}");
 }
