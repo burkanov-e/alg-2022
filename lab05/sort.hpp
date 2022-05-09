@@ -10,3 +10,5 @@ int binarySearch(const std::vector<int> &v, const int &x);
 std::string toStr(const std::vector<int> &v);
 
 void insertionSort(std::vector<int> &v);
+
+void mergeSort(std::vector<int> &v);

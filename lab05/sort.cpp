@@ -18,6 +18,7 @@ std::string toStr(const std::vector<int> &v) {
     return str;
 }
 
+// BINARY SEARCH
 int binarySearch(const std::vector<int> &v, const int &x) {
     int left = 0, right = v.size() - 1;
 
@@ -40,6 +41,7 @@ int binarySearch(const std::vector<int> &v, const int &x) {
     return -1;
 }
 
+// INSERTION SORT
 void insertionSort(std::vector<int> &v) {
     int sz = v.size();
 
@@ -54,4 +56,55 @@ void insertionSort(std::vector<int> &v) {
 
         v[j + 1] = key;
     }
+}
+
+// MERGE SORT
+void merge(std::vector<int> &v, std::vector<int> &left, std::vector<int> &right) {
+    int numLeft = left.size();
+    int numRight = right.size();
+
+    int i = 0, l = 0, r = 0;  // l=left and r=right index
+
+    while (l < numLeft && r < numRight) {
+        if (left[l] < right[r]) {
+            v[i] = left[l];
+            l++;
+        } else {
+            v[i] = right[r];
+            r++;
+        }
+        i++;
+    }
+
+    while (l < numLeft) {
+        v[i] = left[l];
+        l++, i++;
+    }
+
+    while (r < numRight) {
+        v[i] = right[r];
+        r++, i++;
+    }
+}
+
+void mergeSort(std::vector<int> &v) {
+    if (v.size() <= 1) {
+        return;
+    }
+
+    int mid = v.size() / 2;
+    std::vector<int> left;
+    std::vector<int> right;
+
+    for (int l = 0; l < mid; l++) {
+        left.push_back(v[l]);
+    }
+
+    for (size_t r = 0; r < v.size() - mid; r++) {
+        left.push_back(v[r + mid]);
+    }
+
+    mergeSort(left);
+    mergeSort(right);
+    merge(v, left, right);
 }

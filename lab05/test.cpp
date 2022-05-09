@@ -26,3 +26,10 @@ TEST_CASE("Inseriton Sort") {
     insertionSort(v);
     REQUIRE(toStr(v) == "{10, 20, 30, 40, 45, 50, 60, 75, 90}");
 }
+
+TEST_CASE("Merge Sort") {
+    vector<int> v = {10, 30, 20, 50, 40, 45, 75, 60, 90};
+
+    mergeSort(v);
+    REQUIRE(toStr(v) == "{10, 20, 30, 40, 45, 50, 60, 75, 90}");
+}
