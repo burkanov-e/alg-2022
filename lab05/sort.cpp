@@ -78,12 +78,14 @@ void merge(std::vector<int> &v, std::vector<int> &left, std::vector<int> &right)
 
     while (l < numLeft) {
         v[i] = left[l];
-        l++, i++;
+        l++;
+        i++;
     }
 
     while (r < numRight) {
         v[i] = right[r];
-        r++, i++;
+        r++;
+        i++;
     }
 }
 
