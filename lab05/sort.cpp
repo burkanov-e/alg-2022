@@ -59,54 +59,140 @@ void insertionSort(std::vector<int> &v) {
 }
 
 // MERGE SORT
-void merge(std::vector<int> &v, std::vector<int> &left, std::vector<int> &right) {
-    int numLeft = left.size();
-    int numRight = right.size();
+// void merge(std::vector<int> &v, std::vector<int> &left, std::vector<int> &right) {
+//     int numLeft = left.size();
+//     int numRight = right.size();
 
-    int i = 0, l = 0, r = 0;  // l=left and r=right index
+//     int i = 0, l = 0, r = 0;  // l=left and r=right index
 
-    while (l < numLeft && r < numRight) {
-        if (left[l] < right[r]) {
-            v[i] = left[l];
-            l++;
-        } else {
-            v[i] = right[r];
-            r++;
+//     while (l < numLeft && r < numRight) {
+//         if (left[l] < right[r]) {
+//             v[i] = left[l];
+//             l++;
+//         } else {
+//             v[i] = right[r];
+//             r++;
+//         }
+//         i++;
+//     }
+
+//     while (l < numLeft) {
+//         v[i] = left[l];
+//         l++;
+//         i++;
+//     }
+
+//     while (r < numRight) {
+//         v[i] = right[r];
+//         r++;
+//         i++;
+//     }
+// }
+
+// void mergeSort(std::vector<int> &v) {
+//     if (v.size() <= 1) {
+//         return;
+//     }
+
+//     int mid = v.size() / 2;
+//     std::vector<int> left;
+//     std::vector<int> right;
+
+//     for (int l = 0; l < mid; l++) {
+//         left.push_back(v[l]);
+//     }
+
+//     for (size_t r = 0; r < v.size() - mid; r++) {
+//         left.push_back(v[r + mid]);
+//     }
+
+//     mergeSort(left);
+//     mergeSort(right);
+//     merge(v, left, right);
+// }
+
+// void merge(std::vector<int> &v, const int &left, const int &mid, const int &right) {
+//     // First subarray is v[begin   -   mid]
+//     int const subarray1 = mid - left + 1;
+
+//     // Second subarray is v[mid + 1  -  end]
+//     int const subarray2 = right - mid;
+
+//     // Create two temp vector
+
+//     std::vector<int> leftVector(subarray1);
+//     //std::vector<int> leftVector = new std::vector<int>(subarray1);
+
+// }
+
+void merge(std::vector<int> &v, int const &left, int const &mid, int const &right) {
+    // First subarray is arr[begin  -  mid]
+    int const subArray1 = mid - left + 1;
+
+    // Second subarray is arr[mid+1  -  end]
+    int const subArray2 = right - mid;
+
+    // Create temp vectors
+    std::vector<int> leftVector(subArray1);
+    std::vector<int> rightVector(subArray2);
+
+    // Copy data to temp leftVector and rightaVector
+
+    for (int i = 0; i < subArray1; i++) {
+        leftVector[i] = v[left + i];
+    }
+
+    for (int i = 0; i < subArray2; i++) {
+        rightVector[i] = v[mid + 1 + i];
+    }
+
+    int indexOfSubArray1 = 0;  // Initial index of first sub-array
+
+    int indexOfSubArray2 = 0;  // Initial index of second sub-array
+
+    int indexOfMergedVector = left;  // Initial index of merged array
+
+    // Merge the temp arrays back into array[left..right]
+
+    while (indexOfSubArray1 < subArray1 && indexOfSubArray2 < subArray2) {
+        if (leftVector[indexOfSubArray1] <= rightVector[indexOfSubArray2]) {
+            v[indexOfMergedVector] = leftVector[indexOfSubArray1];
+            indexOfSubArray1++;
         }
-        i++;
+
+        else {
+            v[indexOfMergedVector] = rightVector[indexOfSubArray2];
+            indexOfSubArray2++;
+        }
+
+        indexOfMergedVector++;
     }
 
-    while (l < numLeft) {
-        v[i] = left[l];
-        l++;
-        i++;
+    // Copy the remaining elements of rightVector
+
+    while (indexOfSubArray1 < subArray1) {
+        v[indexOfMergedVector] = leftVector[indexOfSubArray1];
+
+        indexOfSubArray1++;
+        indexOfMergedVector++;
     }
 
-    while (r < numRight) {
-        v[i] = right[r];
-        r++;
-        i++;
+    // Copy the remaining elements of rightVector
+    while (indexOfSubArray2 < subArray2) {
+        v[indexOfMergedVector] = rightVector[indexOfSubArray2];
+        indexOfSubArray2++;
+        indexOfMergedVector++;
     }
 }
 
-void mergeSort(std::vector<int> &v) {
-    if (v.size() <= 1) {
-        return;
+void mergeSort(std::vector<int> &v, int const &beg, int const &end) {
+    if (beg >= end) {
+        return;  // Returns recursivly
     }
 
-    int mid = v.size() / 2;
-    std::vector<int> left;
-    std::vector<int> right;
+    int mid = beg + (end - beg) / 2;
 
-    for (int l = 0; l < mid; l++) {
-        left.push_back(v[l]);
-    }
-
-    for (size_t r = 0; r < v.size() - mid; r++) {
-        left.push_back(v[r + mid]);
-    }
-
-    mergeSort(left);
-    mergeSort(right);
-    merge(v, left, right);
+    mergeSort(v, beg, mid);
+    mergeSort(v, mid + 1, end);
+    merge(v, beg, mid, end);
 }
