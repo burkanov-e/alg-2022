@@ -26,6 +26,7 @@ class Solution {
         return;
     }
     TreeNode* increasingBST(TreeNode* root) {
+        rec(root);
         return temp->right;
     }
 };
