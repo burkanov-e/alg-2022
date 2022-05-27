@@ -14,3 +14,5 @@ void insertionSort(std::vector<int> &v);
 // void mergeSort(std::vector<int> &v);
 
 void mergeSort(std::vector<int> &v, int const &beg, int const &end);
+
+void quickSort(std::vector<int> &v, int low, int high);

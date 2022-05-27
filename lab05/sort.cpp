@@ -1,6 +1,7 @@
 #include "sort.hpp"
 
 #include <cstdlib>
+#include <iostream>
 #include <map>
 #include <utility>
 #include <vector>
@@ -44,6 +45,8 @@ int binarySearch(const std::vector<int> &v, const int &x) {
 // INSERTION SORT
 void insertionSort(std::vector<int> &v) {
     int sz = v.size();
+
+    // 3 1 12 8
 
     for (int i = 1; i < sz; i++) {
         int key = v[i];
@@ -195,4 +198,30 @@ void mergeSort(std::vector<int> &v, int const &beg, int const &end) {
     mergeSort(v, beg, mid);
     mergeSort(v, mid + 1, end);
     merge(v, beg, mid, end);
+}
+
+// QUICK SORT
+
+int separation(std::vector<int> &v, int low, int high) {
+    int last = v[high];
+    int i = (low - 1);
+
+    for (int j = low; j <= high; j++) {
+        if (v[j] < last) {
+            i++;
+            std::swap(v[i], v[j]);
+        }
+    }
+
+    std::swap(v[i + 1], v[high]);
+    return (i + 1);
+}
+
+void quickSort(std::vector<int> &v, int low, int high) {
+    if (low < high) {
+        int si = separation(v, low, high);
+
+        quickSort(v, low, si - 1);
+        quickSort(v, si + 1, high);
+    }
 }
