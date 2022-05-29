@@ -3,19 +3,11 @@
 
 using namespace std;
 
-void printVector(const vector<int> &v) {
-    for (int i = 0; i < (int)v.size(); i++) {
-        cout << v[i] << " ";
-    }
-
-    cout << endl;
-}
-
 int separation(vector<int> &v, int low, int high) {
+    int i = (low - 1);
     int last = v[high];
-    int i = low - 1;
 
-    for (int j = low; j < high; j++) {
+    for (int j = low; j <= high; j++) {
         if (v[j] < last) {
             i++;
             swap(v[i], v[j]);
@@ -23,6 +15,7 @@ int separation(vector<int> &v, int low, int high) {
     }
 
     swap(v[i + 1], v[high]);
+
     return (i + 1);
 }
 
@@ -36,8 +29,12 @@ void quickSort(vector<int> &v, int low, int high) {
 }
 
 int main() {
-    vector<int> v = {10, 30, 20, 50, 40, 45, 75, 60, 90};
-
+    vector<int> v{1, 20, 30, 43, 32, 45, 11, 33};
     quickSort(v, 0, v.size() - 1);
-    printVector(v);
+
+    for (int i = 0; i < (int)v.size(); i++) {
+        cout << v[i] << " ";
+    }
+
+    cout << endl;
 }
